@@ -23,9 +23,9 @@ jobs:
 
       - name: "Build Docker Image"
         run: |
-          docker login -u rohanshresthaa -p $DOCKERHUB_PAT
-          docker build -t rohanshresthaa/mywebsite .
-          docker push rohanshresthaa/mywebsite
+          docker login -u kiranbc1999 -p $DOCKERHUB_PAT
+          docker build -t kiranbc1999/mywebsite .
+          docker push kiranbc1999/mywebsite
         env:
           DOCKERHUB_PAT: ${{ secrets.DOCKERHUB_PAT }}
 
@@ -46,6 +46,6 @@ jobs:
           SSH_KEY64: ${{ secrets.SSH_KEY64 }}
       - name: "Docker Pull and Restart Docker"
         run: |
-          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker pull rohanshresthaa/mywebsite'
+          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker pull kiranbc1999/mywebsite'
           ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker stop mynginx && docker rm mynginx'
-          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker run --name mynginx -p 80:80 -d rohanshresthaa/mywebsite'
+          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker run --name mynginx -p 80:80 -d kiranbc1999/mywebsite'
